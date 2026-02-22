@@ -31,6 +31,18 @@ services:
     environment:
       KAFKA_BROKERS: kafka:9092
 
+
+
+
+
+  kafka-consumer:
+    build: ./consumer  # Path to the consumer app directory
+    container_name: kafka-consumer
+    depends_on:
+      - kafka  # Ensure Kafka is up before starting the consumer
+    environment:
+      KAFKA_BROKERS: kafka:9092  # Kafka broker address
+
   redis:
     image: redis:7.4
     container_name: redis
@@ -46,5 +58,8 @@ services:
     ports:
       - "8000:8000"
 
+
 volumes:
   kafka_data:
+
+  
